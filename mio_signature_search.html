@@ -1,0 +1,123 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>미오탱 시그 검색</title><style>*{box-sizing:border-box}body{margin:0;background:#111014;color:#f9edf3;font-family:system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif}.wrap{max-width:900px;margin:auto;padding:35px 18px 80px}.hero{text-align:center;padding:30px 0 25px}.eyebrow{color:#e8b9cd;letter-spacing:4px;font-size:12px}.hero h1{font-size:clamp(30px,7vw,49px);margin:12px 0}.hero p{color:#c9b9c3;font-size:14px}.search{position:sticky;top:0;background:#111014ee;backdrop-filter:blur(14px);padding:16px 0;z-index:2}.search input{width:100%;padding:18px 20px;background:#272129;color:#fff;border:1px solid #6d4c60;border-radius:17px;font-size:17px;outline:none}.search input:focus{border-color:#f5b9d3}.search input::placeholder{color:#a999a4}.info{display:flex;justify-content:space-between;align-items:center;margin:15px 3px;color:#cdb8c4;font-size:13px}.info button{background:transparent;color:#eec2d5;border:0;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.item{display:flex;align-items:center;gap:15px;background:#201b22;border:1px solid #382c37;border-radius:13px;padding:14px;text-align:left;color:#fcebf3;cursor:pointer;min-width:0}.item:hover{border-color:#d9a5be;background:#302530}.num{font-size:20px;font-weight:800;color:#f4c2d6;min-width:58px}.name{font-size:16px;font-weight:600;overflow-wrap:anywhere}.empty{text-align:center;color:#c9aeba;padding:50px 10px}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#f7d8e6;color:#241820;padding:12px 20px;border-radius:30px;display:none;box-shadow:0 8px 30px #0007;z-index:5}.foot{text-align:center;color:#8e7a87;margin-top:30px;font-size:12px}@media(max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:8px}.item{padding:12px 10px;gap:8px}.num{font-size:17px;min-width:44px}.name{font-size:13px}}</style></head><body><main class="wrap"><header class="hero"><div class="eyebrow">MIO TANG ♡ SIGNATURE</div><h1>🎀 미오탱 시그 검색</h1><p>시그 번호 또는 이름을 검색해 보세요!</p></header><section class="search"><input id="q" type="search" placeholder="🔎 예: 303 또는 아이스크림" autocomplete="off" aria-label="시그 번호 또는 이름 검색"><div class="info"><span id="count"></span><button id="reset">전체 보기 ↺</button></div></section><section class="grid" id="results"></section><div class="empty" id="empty" hidden>검색 결과가 없어요. 다른 번호나 이름을 입력해 주세요 ♡</div><p class="foot">검색 결과를 누르면 시그 번호가 복사돼요 ♡</p></main><div class="toast" id="toast" role="status"></div><script>
+const raw=`100|탱하
+120|워크
+122|첫 눈
+123|내 얘길 들어봐
+125|아웅다웅
+130|힙사돈
+134|if you love me
+139|쌔끈빠끈
+140|레제
+150|바빠
+152|외모책
+155|서핀 보이
+167|여름이었다
+171|BDZ
+182|WTF
+188|피리송
+197|런웨이
+200|오버드라이브
+202|Lebel heart
+220|bass down low
+222|GG EZ
+225|홀리몰리
+232|미야오
+234|왠지
+237|고민중독
+250|공시공시
+252|라라리라라
+255|냥냥 펀치
+300|핑크레이디
+302|pink hoodie
+303|아이스크림
+304|100개
+313|Door
+325|두번째지구
+337|캐치캐치
+340|뱅뱅
+345|LSD
+500|계엄령
+526|트월킹덕
+544|NaNaNa
+573|Only Sera
+588|오빠하앙
+666|BAD
+782|호텔파티
+1000|heart
+1003|주님만세
+1010|탱탱
+1011|초코핑
+1015|햄싫어
+1018|문신
+1020|러너
+1022|2_step
+1025|진주야
+1026|씹고
+1030|엔더
+1042|fox
+1045|참치마요
+1050|채채
+1054|방송볼거없Na
+1055|상사화
+1056|스카이라인
+1059|봉구
+1060|뿡뿡
+1069|골프 69
+1070|라네트
+1071|왕자지원
+1072|내꺼하자
+1077|끄악
+1079|터미널
+1080|엘제에이
+1082|힙라인
+1090|알라뷰탱플단
+1092|개리
+1094|압구정아쿠자
+1098|last day
+1099|구구
+1111|지기직직
+1112|이새기가범인
+1119|이멸전시
+1110|예수형2
+1132|무아이경
+1159|로얄오크
+1172|정철이
+1174|벨라74
+1190|뷰티풀
+1200|취팔형2
+1210|only tang
+1222|마티니
+1233|알스미
+1234|신입
+1248|love me
+1250|미오탱
+1252|북동2
+1254|탱베이비
+1256|수라
+1258|허군
+1259|북동
+1333|니엘형
+1500|짭예비형
+1515|짭승환형
+1525|출항
+1878|덴빌형2
+1888|작은예멘
+1997|프지니
+2010|by.T
+2011|다크초코핑
+2040|주남2
+2044|콘라네트
+2077|큰끄악
+2080|빅허군
+2500|디스이즈탱
+2948|v12_romance
+2997|1프로
+2999|큰예멘
+3052|십만로디
+3333|예수님
+5000|레전드탱플단
+10000|shadow
+20000|Fallen Crown
+30000|Legends Never Die`;
+const data=raw.trim().split('\n').map(line=>{const [number,...rest]=line.split('|');return {number,name:rest.join('|')}}).sort((a,b)=>Number(a.number)-Number(b.number));const q=document.querySelector('#q'),results=document.querySelector('#results'),count=document.querySelector('#count'),empty=document.querySelector('#empty'),toast=document.querySelector('#toast');let timer;function render(){const term=q.value.trim().toLocaleLowerCase().replace(/\s/g,'');const filtered=data.filter(x=>x.number.includes(term)||x.name.toLocaleLowerCase().replace(/\s/g,'').includes(term));count.textContent=term?`검색 결과 ${filtered.length}개`:`전체 ${data.length}개 시그`;results.replaceChildren();empty.hidden=filtered.length!==0;for(const x of filtered){const b=document.createElement('button');b.className='item';b.type='button';const n=document.createElement('span');n.className='num';n.textContent=x.number;const t=document.createElement('span');t.className='name';t.textContent=x.name;b.append(n,t);b.onclick=async()=>{try{await navigator.clipboard.writeText(x.number);toast.textContent=`${x.number} 복사 완료 ♡`}catch{toast.textContent=`번호: ${x.number}`}toast.style.display='block';clearTimeout(timer);timer=setTimeout(()=>toast.style.display='none',1900)};results.append(b)}}q.addEventListener('input',render);document.querySelector('#reset').onclick=()=>{q.value='';render();q.focus()};render();
+</script></body></html>
