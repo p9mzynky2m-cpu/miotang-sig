@@ -636,11 +636,21 @@ async function refreshExtras(){
    const box=document.getElementById('notices');
    box.replaceChildren();
 
-   for(const x of noticesResult.data||[]){
-    const p=document.createElement('p');
-    p.textContent=x.content;
-    box.append(p);
-   }
+for(const x of noticesResult.data||[]){
+  const lines=String(x.content||'').split('\n');
+
+  for(const line of lines){
+    if(line.trim()==='---'){
+      const hr=document.createElement('hr');
+      hr.className='notice-divider';
+      box.append(hr);
+    }else{
+      const p=document.createElement('p');
+      p.textContent=line;
+      box.append(p);
+    }
+  }
+}
   }
 
   if(!featuredResult.error){
