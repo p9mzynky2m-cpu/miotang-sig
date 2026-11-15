@@ -98,21 +98,45 @@ a{color:#f4c2d6}
 </header>
 
 <section class="panel">
-<h2>📢 안내</h2>
-<div id="notices">
-<p>!역팬 한방 네자리부터 10% ( 요청시 )</p>
-<p>!방셀 2825 움짤 방셀 , 5725 움짤 정성 방셀</p>
-</div>
+  <button type="button" class="fold-title"
+    aria-expanded="true" aria-controls="noticeContent">
+    <span>📢 안내</span>
+    <span class="fold-arrow">⌃</span>
+  </button>
+
+  <div id="noticeContent" class="fold-content">
+    <hr class="notice-divider">
+    <div id="notices">
+      <p>💗 역팬 한방 네 자리부터 10% (요청 시)</p>
+      <p>📸 방셀 2825 움짤 방셀 / 5725 움짤 정성 방셀</p>
+    </div>
+  </div>
 </section>
 
 <section class="panel">
-<h2>🎀 미오탱 시그</h2>
-<hr style="border:0; height:1px; background:#493543; margin:14px 0 20px;">
-<div id="featured">
-<div class="featured-row"><span class="featured-number">1125</span><span class="featured-name">1일1미오</span></div>
-<div class="featured-row"><span class="featured-number">2825</span><span class="featured-name">이뻐미오</span></div>
-<div class="featured-row"><span class="featured-number">5725</span><span class="featured-name">오직미오</span></div>
-</div>
+  <button type="button" class="fold-title"
+    aria-expanded="true" aria-controls="featuredContent">
+    <span>🎀 미오탱 시그</span>
+    <span class="fold-arrow">⌃</span>
+  </button>
+
+  <div id="featuredContent" class="fold-content">
+    <hr class="notice-divider">
+    <div id="featured">
+      <div class="featured-row">
+        <span class="featured-number">1125</span>
+        <span class="featured-name">1일1미오</span>
+      </div>
+      <div class="featured-row">
+        <span class="featured-number">2825</span>
+        <span class="featured-name">이뻐미오</span>
+      </div>
+      <div class="featured-row">
+        <span class="featured-number">5725</span>
+        <span class="featured-name">오직미오</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="search" id="searchArea">
