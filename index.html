@@ -124,15 +124,28 @@ a{color:#f4c2d6}
   border-bottom: none !important;
 }
 
-/* 1. 접기 버튼 화살표 크기 통일 */
+/* 접기·펼치기 화살표 통일 */
 .fold-arrow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 24px;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1;
+  height: 24px;
+  font-size: 0;
+}
+
+.fold-arrow::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-right: 3px solid #E8B9CD;
+  border-bottom: 3px solid #E8B9CD;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.fold-title[aria-expanded="true"] .fold-arrow::after {
+  transform: rotate(225deg);
 }
 
 /* 2. 검색창 테두리 강조 */
