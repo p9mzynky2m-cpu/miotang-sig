@@ -5,21 +5,89 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>미오탱 시그 검색</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#111014;color:#f9edf3;font-family:system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif}
-.wrap{max-width:900px;margin:auto;padding:35px 18px 80px}
-.hero{text-align:center;padding:30px 0 25px}
-.eyebrow{color:#e8b9cd;letter-spacing:4px;font-size:12px}
-.hero h1{font-size:clamp(30px,7vw,49px);margin:12px 0}
-.hero p{color:#c9b9c3;font-size:14px}
-.search{position:sticky;top:0;background:#111014ee;backdrop-filter:blur(14px);padding:16px 0;z-index:2}
-.search input{width:100%;padding:16px 18px;background:#272129;color:#fff;border:1px solid #6d4c60;border-radius:14px;font-size:16px;outline:none}
-.search input:focus{border-color:#f5b9d3}
-.search input::placeholder{color:#a999a4}
-.info{display:flex;justify-content:space-between;align-items:center;margin:15px 3px;color:#cdb8c4;font-size:13px}
-.info button{background:transparent;color:#eec2d5;border:0;cursor:pointer}
 
+body{
+  margin:0;
+  background:#111014;
+  color:#f9edf3;
+  font-family:system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif;
+}
+
+.wrap{
+  max-width:900px;
+  margin:auto;
+  padding:35px 18px 80px;
+}
+
+.hero{
+  text-align:center;
+  padding:30px 0 25px;
+}
+
+.eyebrow{
+  color:#e8b9cd;
+  letter-spacing:4px;
+  font-size:12px;
+}
+
+.hero h1{
+  font-size:clamp(30px,7vw,49px);
+  margin:12px 0;
+}
+
+.hero p{
+  color:#c9b9c3;
+  font-size:14px;
+}
+
+.search{
+  position:sticky;
+  top:0;
+  background:#111014ee;
+  backdrop-filter:blur(14px);
+  padding:16px 0;
+  z-index:2;
+}
+
+.search input{
+  width:100%;
+  padding:16px 18px;
+  background:#272129;
+  color:#fff;
+  border:1px solid #6d4c60;
+  border-radius:14px;
+  font-size:16px;
+  outline:none;
+}
+
+.search input:focus{
+  border-color:#f5b9d3;
+}
+
+.search input::placeholder{
+  color:#a999a4;
+}
+
+.info{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:15px 3px;
+  color:#cdb8c4;
+  font-size:13px;
+}
+
+.info button{
+  background:transparent;
+  color:#eec2d5;
+  border:0;
+  cursor:pointer;
+}
+
+/* 시그 목록 */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
@@ -51,8 +119,17 @@ body{margin:0;background:#111014;color:#f9edf3;font-family:system-ui,-apple-syst
   min-width:0;
   font-size:17px;
   font-weight:800;
-  color:#f4c2d6;
+  color:#F4C2D6;
   white-space:nowrap;
+}
+
+/* 숫자 자릿수별 색상 */
+.item.digits-4 .num{
+  color:#DCCBFF;
+}
+
+.item.digits-5 .num{
+  color:#FFE6A7;
 }
 
 .name{
@@ -65,22 +142,92 @@ body{margin:0;background:#111014;color:#f9edf3;font-family:system-ui,-apple-syst
   word-break:break-word;
 }
 
-.empty{text-align:center;color:#c9aeba;padding:50px 10px}
-.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#f7d8e6;color:#241820;padding:12px 20px;border-radius:30px;display:none;box-shadow:0 8px 30px #0007;z-index:5}
-.foot{text-align:center;color:#8e7a87;margin-top:30px;font-size:12px}
-button{cursor:pointer}
-.panel{background:#201b22;border:1px solid #483444;border-radius:17px;padding:18px;margin:14px 0}
-.panel h2{font-size:18px;color:#e8b9cd;margin:0 0 14px}
-.panel p{margin:9px 0;line-height:1.7;overflow-wrap:anywhere}
-.featured-row{display:flex;gap:18px;align-items:center;padding:8px 0}
-.featured-number{color:#f4c2d6;font-weight:800;min-width:55px}
-.featured-name{font-weight:600;overflow-wrap:anywhere}
-.status{color:#e9bed1;font-size:13px;line-height:1.6}
-a{color:#f4c2d6}
-[hidden]{display:none!important}
+.empty{
+  text-align:center;
+  color:#c9aeba;
+  padding:50px 10px;
+}
+
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#f7d8e6;
+  color:#241820;
+  padding:12px 20px;
+  border-radius:30px;
+  display:none;
+  box-shadow:0 8px 30px #0007;
+  z-index:5;
+}
+
+.foot{
+  text-align:center;
+  color:#8e7a87;
+  margin-top:30px;
+  font-size:12px;
+}
+
+button{
+  cursor:pointer;
+}
+
+.panel{
+  background:#201b22;
+  border:1px solid #483444;
+  border-radius:17px;
+  padding:18px;
+  margin:14px 0;
+}
+
+.panel h2{
+  font-size:18px;
+  color:#e8b9cd;
+  margin:0 0 14px;
+}
+
+.panel p{
+  margin:9px 0;
+  line-height:1.7;
+  overflow-wrap:anywhere;
+}
+
+.featured-row{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  padding:8px 0;
+}
+
+.featured-number{
+  color:#f4c2d6;
+  font-weight:800;
+  min-width:55px;
+}
+
+.featured-name{
+  font-weight:600;
+  overflow-wrap:anywhere;
+}
+
+.status{
+  color:#e9bed1;
+  font-size:13px;
+  line-height:1.6;
+}
+
+a{
+  color:#f4c2d6;
+}
+
+[hidden]{
+  display:none!important;
+}
 
 /* 모바일 화면 */
 @media(max-width:480px){
+
   .grid{
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:8px;
@@ -100,7 +247,7 @@ a{color:#f4c2d6}
     line-height:1.4;
   }
 
-  /* 다섯 자리 번호는 이름을 아래에 표시 */
+  /* 5자리 이상 번호는 이름을 아래에 배치 */
   .item.long-number{
     flex-direction:column;
     align-items:flex-start;
@@ -121,42 +268,55 @@ a{color:#f4c2d6}
 }
 </style>
 </head>
+
 <body>
 <main class="wrap">
 
 <header class="hero">
-<div class="eyebrow">MIO TANG ♥︎ SIGNATURE</div>
-<h1>🎀 미오탱 시그 검색</h1>
-<p>시그 번호 또는 이름을 검색해 보세요!</p>
+  <div class="eyebrow">MIO TANG ♥︎ SIGNATURE</div>
+  <h1>🎀 미오탱 시그 검색</h1>
+  <p>시그 번호 또는 이름을 검색해 보세요!</p>
 </header>
 
 <section class="panel">
-<h2>📢 안내</h2>
-<div id="notices">
-<p>!역팬 한방 네자리부터 10% ( 요청시 )</p>
-<p>!방셀 2825 움짤 방셀 , 5725 움짤 정성 방셀</p>
-</div>
+  <h2>📢 안내</h2>
+  <div id="notices">
+    <p>!역팬 한방 네자리부터 10% ( 요청시 )</p>
+    <p>!방셀 2825 움짤 방셀 , 5725 움짤 정성 방셀</p>
+  </div>
 </section>
 
 <section class="search">
-<input id="q" type="search"
-placeholder="🔎 예: 1250 또는 미오탱"
-autocomplete="off"
-aria-label="시그 번호 또는 이름 검색">
+  <input
+    id="q"
+    type="search"
+    placeholder="🔎 예: 1250 또는 미오탱"
+    autocomplete="off"
+    aria-label="시그 번호 또는 이름 검색"
+  >
 </section>
 
 <section class="panel">
-<h2>🎀 미오탱 시그</h2>
-<div id="featured">
-<div class="featured-row"><span class="featured-number">1125</span><span class="featured-name">1일1미오</span></div>
-<div class="featured-row"><span class="featured-number">2825</span><span class="featured-name">이뻐미오</span></div>
-<div class="featured-row"><span class="featured-number">5725</span><span class="featured-name">오직미오</span></div>
-</div>
+  <h2>🎀 미오탱 시그</h2>
+  <div id="featured">
+    <div class="featured-row">
+      <span class="featured-number">1125</span>
+      <span class="featured-name">1일1미오</span>
+    </div>
+    <div class="featured-row">
+      <span class="featured-number">2825</span>
+      <span class="featured-name">이뻐미오</span>
+    </div>
+    <div class="featured-row">
+      <span class="featured-number">5725</span>
+      <span class="featured-name">오직미오</span>
+    </div>
+  </div>
 </section>
 
 <div class="info">
-<span id="count"></span>
-<button id="reset">전체 보기 ↺</button>
+  <span id="count"></span>
+  <button id="reset">전체 보기 ↺</button>
 </div>
 
 <div id="status" class="status" role="status"></div>
@@ -164,11 +324,16 @@ aria-label="시그 번호 또는 이름 검색">
 <section class="grid" id="results"></section>
 
 <div class="empty" id="empty" hidden>
-검색 결과가 없어요. 다른 번호나 이름을 입력해 주세요 ♥︎
+  검색 결과가 없어요. 다른 번호나 이름을 입력해 주세요 ♥︎
 </div>
 
-<p class="foot">검색 결과를 누르면 시그 번호가 복사돼요 ♥︎</p>
-<p class="foot"><a href="admin.html">관리자 로그인</a></p>
+<p class="foot">
+  검색 결과를 누르면 시그 번호가 복사돼요 ♥︎
+</p>
+
+<p class="foot">
+  <a href="admin.html">관리자 로그인</a>
+</p>
 
 </main>
 
@@ -339,8 +504,15 @@ function render(){
     b.className='item';
     b.type='button';
 
-    /* 다섯 자리 번호 구분 */
-    if(String(x.number).length>=5){
+    const digits=String(x.number).length;
+
+    /* 번호 자릿수에 따른 색상 */
+    if(digits===4){
+      b.classList.add('digits-4');
+    }
+
+    if(digits>=5){
+      b.classList.add('digits-5');
       b.classList.add('long-number');
     }
 
@@ -364,6 +536,7 @@ function render(){
 
       toast.style.display='block';
       clearTimeout(timer);
+
       timer=setTimeout(()=>{
         toast.style.display='none';
       },1900);
@@ -411,6 +584,7 @@ async function refresh(){
         number:Number(x.number),
         name:x.name
       }));
+
       status.textContent='온라인 시그 목록 · 자동 업데이트';
     }else{
       status.textContent='온라인 목록이 비어 있어 기존 시그를 임시 표시 중이에요.';
