@@ -761,6 +761,23 @@ setInterval(refreshAll,15000);
 document.addEventListener('visibilitychange',()=>{
  if(!document.hidden)refreshAll();
 });
+
+document.querySelectorAll('.fold-title').forEach(button => {
+  button.addEventListener('click', () => {
+    const content = document.getElementById(
+      button.getAttribute('aria-controls')
+    );
+
+    const isOpen = !content.hidden;
+
+    content.hidden = isOpen;
+    button.setAttribute('aria-expanded', String(!isOpen));
+
+    button.querySelector('.fold-arrow').textContent =
+      isOpen ? '⌄' : '⌃';
+  });
+});
+
 </script>
 </body>
 </html>
