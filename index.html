@@ -43,6 +43,51 @@ a{color:#f4c2d6}
 .num{font-size:17px;min-width:44px}
 .name{font-size:13px}
 }
+
+/* 시그 번호와 이름 겹침 방지 */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.num {
+  flex: 0 0 65px;
+  min-width: 65px;
+  font-size: 17px;
+  font-weight: 800;
+  color: #f4c2d6;
+  white-space: nowrap;
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 모바일에서도 두 칸 배치 유지 */
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .item {
+    padding: 12px 10px;
+    gap: 10px;
+  }
+
+  .num {
+    flex: 0 0 65px;
+    min-width: 65px;
+  }
+}
+
 </style>
 </head>
 <body>
