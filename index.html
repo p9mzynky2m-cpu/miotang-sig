@@ -44,28 +44,27 @@ a{color:#f4c2d6}
 .name{font-size:13px}
 }
 
-/* 시그 번호와 이름 겹침 방지 */
-.item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
+/* 시그 번호와 이름 겹침 최종 수정 */
+.grid .item {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-content: center;
+  gap: 4px !important;
 }
 
-.item .num {
-  flex: 0 0 auto;
-  min-width: 0;
+.grid .item .num {
+  min-width: 0 !important;
+  width: auto !important;
+  font-size: 18px !important;
   white-space: nowrap;
-  font-size: 17px;
 }
 
-.item .name {
-  flex: 1 1 0;
-  min-width: 0;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  font-size: 13px;
+.grid .item .name {
+  min-width: 0 !important;
+  width: 100% !important;
+  font-size: 13px !important;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 </style>
