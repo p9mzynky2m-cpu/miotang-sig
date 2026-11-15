@@ -829,8 +829,7 @@ document.querySelectorAll('.fold-title').forEach(button => {
     content.hidden = isOpen;
     button.setAttribute('aria-expanded', String(!isOpen));
 
-    button.querySelector('.fold-arrow').textContent =
-      isOpen ? '⌄' : '⌃';
+button.querySelector('.fold-arrow').textContent = '';
   });
 });
 
