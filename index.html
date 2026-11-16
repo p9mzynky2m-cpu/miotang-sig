@@ -247,6 +247,14 @@ a{color:#f4c2d6}
 <button type="button" class="filter-btn" data-filter="fav">♥ 즐겨찾기</button>
 </div>
 
+<div id="rangeFilters" class="range-filters" hidden>
+  <button type="button" data-range="all" class="active">전체</button>
+  <button type="button" data-range="3digit">3자리</button>
+  <button type="button" data-range="1000">1000~1999</button>
+  <button type="button" data-range="2000">2000~2999</button>
+  <button type="button" data-range="3000">3000 이상</button>
+</div>
+
 <div id="status" class="status" role="status"></div>
 <section class="grid" id="results"></section>
 <div class="empty" id="empty" hidden>검색 결과가 없어요. 다른 번호나 이름을 입력해 주세요 ♥︎</div>
@@ -442,6 +450,7 @@ if(!newItems||typeof newItems!=='object'||Array.isArray(newItems)){
 }
 
 let currentFilter='all';
+let currentRange='all';
 let timer;
 
 const digitClass=n=>
@@ -575,6 +584,19 @@ function render(){
   filtered=filtered.filter(x=>isNew(x.number));
  }
 
+if(currentRange==='3digit'){
+  filtered=filtered.filter(x=>Number(x.number)>=100 && Number(x.number)<=999);
+}
+if(currentRange==='1000'){
+  filtered=filtered.filter(x=>Number(x.number)>=1000 && Number(x.number)<=1999);
+}
+if(currentRange==='2000'){
+  filtered=filtered.filter(x=>Number(x.number)>=2000 && Number(x.number)<=2999);
+}
+if(currentRange==='3000'){
+  filtered=filtered.filter(x=>Number(x.number)>=3000);
+}
+
  count.textContent=term
   ?`검색 결과 ${filtered.length}개`
   :`${currentFilter==='all'?'전체':'선택한'} ${filtered.length}개 시그`;
@@ -679,6 +701,28 @@ document.querySelectorAll('.filter-btn').forEach(b=>{
   closeRecent();
   render();
  };
+});
+
+function setRangeButtons(){
+  document.querySelectorAll('[data-range]').forEach(b=>{
+    b.classList.toggle('active',b.dataset.range===currentRange);
+  });
+}
+
+document.querySelectorAll('[data-range]').forEach(b=>{
+  b.onclick=()=>{
+    currentRange=b.dataset.range;
+    setRangeButtons();
+    closeRecent();
+    render();
+  };
+});
+
+document.querySelectorAll('.filter-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const box=document.getElementById('rangeFilters');
+    box.hidden=b.dataset.filter!=='all';
+  });
 });
 
 const ready=
