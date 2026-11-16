@@ -211,13 +211,18 @@ a{color:#f4c2d6}
   border-color: #D5A6C0 !important;
 }
 
-/* 기존 구분선만 유지 */
+/* 제목 아래 구분선 하나만 유지 */
 .fold-title {
   border-bottom: none !important;
 }
 
-#noticeContent {
-  border-top: none !important;
+#noticeContent,
+#featuredContent {
+  border-top: 1px solid #493543 !important;
+}
+
+.notice-divider {
+  display: none !important;
 }
 
 #notices {
