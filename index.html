@@ -585,8 +585,12 @@ function render(){
  }
 
 if(currentRange==='3digit'){
-  filtered=filtered.filter(x=>Number(x.number)>=100 && Number(x.number)<=999);
+  filtered=filtered.filter(x=>
+    Number(x.number)===50 ||
+    (Number(x.number)>=100 && Number(x.number)<=999)
+  );
 }
+
 if(currentRange==='1000'){
   filtered=filtered.filter(x=>Number(x.number)>=1000 && Number(x.number)<=1999);
 }
